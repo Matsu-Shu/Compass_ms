@@ -64,6 +64,7 @@ class RegisterController extends Controller
             $old_year = $request->old_year;
             $old_month = $request->old_month;
             $old_day = $request->old_day;
+
             $data = $old_year . '-' . $old_month . '-' . $old_day;
             $birth_day = date('Y-m-d', strtotime($data));
             $subjects = $request->subject;
@@ -79,8 +80,10 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
-            $user = User::findOrFail($user_get->id);
-            $user->subjects()->attach($subjects);
+            if($request->role==4){
+                $user = User::findOrFail($user_get->id);
+                $user->subjects()->attach($subjects);
+            }
             DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){

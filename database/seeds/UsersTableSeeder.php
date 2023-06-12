@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'sex' => '1',
             'birth_day' => '2000-04-01',
             'role' => '4',
+            'password' => \Hash::make('yamadatarou41'),
             'remember_token' => '',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
